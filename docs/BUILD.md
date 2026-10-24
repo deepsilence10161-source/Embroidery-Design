@@ -62,7 +62,7 @@ The workflow has four jobs:
 
 1. **verify:** clean npm installation, static checks, browser validation, build website, upload Pages and portable artifacts.
 2. **android:** Java / SDK setup, bundle the same HTML, stable release signing, compile, unit-check, lint, verify APK signature.
-   The four native print-input unit tests check size limits, blank-document rejection and Unicode titles; the optional connected-device test APK is compiled as well.
+   The four native print-input unit tests check size limits, blank-document rejection and Unicode titles; the optional connected-device test APK is compiled as well. Tasks are scoped to `:app:` so vendored plugin test applications are not built.
 3. **deploy:** deploy the verified website to GitHub Pages only after both builds pass.
 4. **publish:** release `EmbroideryGuide.apk`, `EmbroideryGuide.html`, `EmbroideryGuide-website.zip` and `SHA256SUMS.txt`.
 
@@ -85,7 +85,7 @@ The original key and credentials are backed up **outside this public repository*
 
 ## Phone acceptance checklist
 
-Optional automated checks with a connected test phone: `cd android && ./gradlew connectedDebugAndroidTest`. These check the package identity and bundled source; system-dialog acceptance is still manual.
+Optional automated checks with a connected test phone: `cd android && ./gradlew :app:connectedDebugAndroidTest`. These check the package identity and bundled source; system-dialog acceptance is still manual.
 
 After installing the signed APK on a real target phone:
 

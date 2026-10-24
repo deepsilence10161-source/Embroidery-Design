@@ -113,7 +113,7 @@ jobs:
           EG_ANDROID_KEYSTORE_PASSWORD: ${{ secrets.EG_ANDROID_KEYSTORE_PASSWORD }}
           EG_ANDROID_KEY_ALIAS: ${{ secrets.EG_ANDROID_KEY_ALIAS }}
           EG_ANDROID_KEY_PASSWORD: ${{ secrets.EG_ANDROID_KEY_PASSWORD }}
-        run: ./gradlew --no-daemon --stacktrace assembleRelease testReleaseUnitTest assembleDebugAndroidTest lintRelease
+        run: ./gradlew --no-daemon --stacktrace :app:assembleRelease :app:testReleaseUnitTest :app:assembleDebugAndroidTest :app:lintRelease
       - name: Verify APK signature and package
         run: |
           mkdir -p artifacts
