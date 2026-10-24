@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">EmbroideryGuide</string>
+    <string name="title_activity_main">EmbroideryGuide</string>
+    <string name="package_name">com.embroideryguide.app</string>
+    <string name="custom_url_scheme">com.embroideryguide.app</string>
+</resources>

@@ -1,0 +1,19 @@
+{
+  "appId": "com.embroideryguide.app",
+  "appName": "EmbroideryGuide",
+  "webDir": ".native-web",
+  "backgroundColor": "#0F0F0F",
+  "loggingBehavior": "none",
+  "android": {
+    "backgroundColor": "#0F0F0F",
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "style": "DARK",
+      "initialViewportFitValueHint": "cover"
+    }
+  }
+}

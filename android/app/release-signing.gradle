@@ -1,0 +1,21 @@
+// Passwords and private key material are supplied only via the CI environment.
+// Never use a regenerated debug keystore for distributed APK updates.
+def keystorePath = System.getenv('EG_ANDROID_KEYSTORE_PATH')
+if (keystorePath) {
+    ['EG_ANDROID_KEYSTORE_PASSWORD', 'EG_ANDROID_KEY_ALIAS', 'EG_ANDROID_KEY_PASSWORD'].each { name ->
+        if (!System.getenv(name)) throw new GradleException("Missing signing environment variable: " + name)
+    }
+    android.signingConfigs {
+        embroideryRelease {
+            storeFile file(keystorePath)
+            storePassword System.getenv('EG_ANDROID_KEYSTORE_PASSWORD')
+            keyAlias System.getenv('EG_ANDROID_KEY_ALIAS')
+            keyPassword System.getenv('EG_ANDROID_KEY_PASSWORD')
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    android.buildTypes.release.signingConfig = android.signingConfigs.embroideryRelease
+} else if (gradle.startParameter.taskNames.any { it.toLowerCase().contains('release') }) {
+    throw new GradleException('Release signing is not configured. Set the EG_ANDROID_* environment variables, or build assembleDebug locally.')
+}

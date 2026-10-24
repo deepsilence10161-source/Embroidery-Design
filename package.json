@@ -1,0 +1,32 @@
+{
+  "name": "embroidery-guide",
+  "version": "1.4.0",
+  "private": true,
+  "description": "One offline embroidery workspace for the web and Android.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "dev": "npm run build && node scripts/serve.mjs",
+    "test": "playwright test",
+    "test:ci": "npm run check && npm run build && playwright test",
+    "android:sync": "npm run build && cap sync android && node scripts/android-config.mjs",
+    "android:build": "npm run android:sync && node scripts/android-build.mjs"
+  },
+  "dependencies": {
+    "@capacitor/core": "8.5.3",
+    "@capacitor/android": "8.5.3",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/share": "8.0.3",
+    "@capacitor/camera": "8.2.6"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3",
+    "esbuild": "0.28.2",
+    "@playwright/test": "1.64.1"
+  }
+}
