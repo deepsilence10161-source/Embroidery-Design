@@ -27,7 +27,7 @@ public class EmbroideryPrintPlugin extends Plugin {
     public void print(PluginCall call) {
         final String html = call.getString("html", "");
         final String name = call.getString("name", "EmbroideryGuide setup");
-        if (html.isEmpty() || html.length() > 8 * 1024 * 1024) {
+        if (!PrintInput.validDocument(html)) {
             call.reject("The print document is empty or too large.");
             return;
         }
@@ -62,7 +62,7 @@ public class EmbroideryPrintPlugin extends Plugin {
                     settled[0] = true;
                     handler.removeCallbacks(timeout);
                     try {
-                        final String title = name.length() > 120 ? name.substring(0, 120) : name;
+                        final String title = PrintInput.jobTitle(name);
                         final PrintDocumentAdapter delegate = view.createPrintDocumentAdapter(title);
                         final PrintDocumentAdapter adapter = new PrintDocumentAdapter() {
                             @Override public void onStart() { delegate.onStart(); }
